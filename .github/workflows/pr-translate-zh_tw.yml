@@ -3,6 +3,10 @@ name: Translate Docs
 on:
   pull_request:
     types: [opened, synchronize]
+    paths-ignore:
+        - '/zh_TW/**'
+        - '/en_US/**'
+        - '/.github/**'
 
 jobs:
   translate:
