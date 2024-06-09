@@ -17,7 +17,7 @@ pr_number = event_data['number']
 
 # Get the list of files changed
 headers = {'Authorization': f'token {token}'}
-url = f'https://api.github.com/repos/ScaredCube/travelling-test/pulls/{pr_number}/files'
+url = f'https://api.github.com/repos/{repo_name}/pulls/{pr_number}/files'
 response = requests.get(url, headers=headers)
 
 # Catching errors
