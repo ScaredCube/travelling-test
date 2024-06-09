@@ -17,6 +17,9 @@ hero:
     - theme: alt
       text: 疑难解答
       link: /docs/qa
+    - theme: alt
+      text: 触发Pr翻译
+      link: /docs/qa
 
 features:
   - title: 隐私保护，安全无忧
