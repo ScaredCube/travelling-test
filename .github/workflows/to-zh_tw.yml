@@ -12,6 +12,9 @@ jobs:
   translate:
     runs-on: ubuntu-latest
 
+    permissions:
+      pull-requests: write
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -34,6 +37,7 @@ jobs:
     - name: Comment on PR with translation suggestions
       uses: marocchino/sticky-pull-request-comment@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         header: Translation Suggestions
         path: translation_output.txt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

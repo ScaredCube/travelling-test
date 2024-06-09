@@ -42,3 +42,6 @@ for file in files:
 # Write the translation suggestions to a file
 with open('translation_output.txt', 'w', encoding='utf-8') as f:
     f.write('\n\n'.join(translations))
+
+with open('translation_output.txt', 'r', encoding='utf-8') as f:
+    print(f.read())
