@@ -1,21 +1,24 @@
 import os
+import requests
 import opencc
-from github import Github
 
 converter = opencc.OpenCC('s2twp.json')
-g = Github(os.getenv('GITHUB_TOKEN'))
 
-repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'))
-pr = repo.get_pull(int(os.getenv('GITHUB_REF').split('/')[-1]))
+token = os.getenv('GITHUB_TOKEN')
+repo_name = os.getenv('GITHUB_REPOSITORY')
+pr_number = os.getenv('GITHUB_REF').split('/')[-1]
 
-changed_files = pr.get_files()
-docs_files = [f for f in changed_files]
+headers = {'Authorization': f'token {token}'}
+url = f'https://api.github.com/repos/{repo_name}/pulls/{pr_number}/files'
+response = requests.get(url, headers=headers)
+files = response.json()
 
 translations = []
-for file in docs_files:
-    original_content = file.patch
-    translated_content = converter.convert(original_content)
-    translations.append(f'File: {file.filename}\nOriginal:\n{original_content}\n\nTranslated:\n{translated_content}\n')
+for file in files:
+    if 'docs/' in file['filename'].lower():
+        original_content = requests.get(file['raw_url'], headers=headers).text
+        translated_content = converter.convert(original_content)
+        translations.append(f'File: {file["filename"]}\nOriginal:\n{original_content}\n\nTranslated:\n{translated_content}\n')
 
 with open('translation_output.txt', 'w', encoding='utf-8') as f:
     f.write('\n\n'.join(translations))
