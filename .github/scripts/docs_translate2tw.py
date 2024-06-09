@@ -6,9 +6,14 @@ import opencc
 converter = opencc.OpenCC('s2twp.json')
 
 # Get the GitHub token and repository information from environment variables
+# Get the GitHub token and repository information from environment variables
 token = os.getenv('GITHUB_TOKEN')
 repo_name = os.getenv('GITHUB_REPOSITORY')
-pr_number = os.getenv('GITHUB_REF').split('/')[-1]
+
+# Read event data to get the PR number
+with open(os.getenv('GITHUB_EVENT_PATH')) as f:
+    event_data = json.load(f)
+pr_number = event_data['number']
 
 # Get the list of files changed in the pull request
 headers = {'Authorization': f'token {token}'}
