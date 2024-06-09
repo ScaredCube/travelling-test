@@ -38,7 +38,7 @@ for file in files:
         original_content = original_content_response.text
         translated_content = converter.convert(original_content)
         translations.append(f'''
-若您進行了文件改動，請修改`zh_TW`中相應內容。
+若您進行了檔案改動，請修改`zh_TW`中相應內容。
 
 以下是翻譯建議。若您對翻譯內容不滿意，請在`zh_TW`中相應位置新增簡體中文原文，並 @ScaredCube 進行翻譯
 
