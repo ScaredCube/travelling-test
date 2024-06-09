@@ -39,6 +39,8 @@ for file in files:
         translations.append(f'''
 若您進行了檔案改動，請修改`zh_TW`中相應內容。
 
+若您是修改原有檔案，請僅修改翻譯中您改動的部分！不要覆蓋整個檔案。
+
 以下是翻譯建議。若您對翻譯內容不滿意，請在`zh_TW`中相應位置新增簡體中文原文，並 @ScaredCube 進行翻譯
 
 <details>
