@@ -12,12 +12,12 @@ pr_number = os.getenv('GITHUB_REF').split('/')[-1]
 
 # Get the list of files changed in the pull request
 headers = {'Authorization': f'token {token}'}
-url = f'https://api.github.com/repos/{repo_name}/pulls/{pr_number}/files'
+url = f'https://api.github.com/repos/ScaredCube/travelling-test/pulls/{pr_number}/files'
 response = requests.get(url, headers=headers)
 
 # Check for errors in the API response
 if response.status_code != 200:
-    print(f"Failed to fetch PR files: {response.status_code} {response.text}")
+    print(f"Failed to fetch PR files: {response.status_code} {response.text} \nUrl: {url}")
     exit(1)
 
 files = response.json()
