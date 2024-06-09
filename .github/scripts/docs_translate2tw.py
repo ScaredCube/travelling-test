@@ -30,13 +30,7 @@ files = response.json()
 # Translate docs
 translations = []
 directories_to_check = ['docs/', 'announcements/', 'blog/']
-for file in files:
-    if any(directory in file['filename'].lower() for directory in directories_to_check):
-        raw_url = file['raw_url']
-        original_content_response = requests.get(raw_url, headers=headers)
-        original_content = original_content_response.text
-        translated_content = converter.convert(original_content)
-        translations.append(f'''
+translations.append(f'''
 若您進行了檔案改動，請修改`zh_TW`中相應內容。
 
 若您是修改原有檔案，請僅修改翻譯中您改動的部分！不要覆蓋整個檔案。
@@ -47,16 +41,25 @@ for file in files:
 
 <summary>展開翻譯建議</summary>
 
+''')
+
+for file in files:
+    raw_url = file['raw_url']
+    original_content_response = requests.get(raw_url, headers=headers)
+    original_content = original_content_response.text
+    translated_content = converter.convert(original_content)
+    translations.append(f'''
 ### File: `{file["filename"]}`:
 
 ```markdown
 {translated_content}
 ```
+''')
 
+translations.append(f'''
 by [OpenCC](https://github.com/BYVoid/OpenCC)
 
-</details>
-            ''')
+</details>''')
 
 # Write the translation suggestions to a file
 with open('translation_output.txt', 'w', encoding='utf-8') as f:
