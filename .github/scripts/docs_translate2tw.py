@@ -1,6 +1,7 @@
 import os
 import requests
 import opencc
+import json
 
 # Initialize the OpenCC converter
 converter = opencc.OpenCC('s2twp.json')
