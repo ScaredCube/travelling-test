@@ -17,6 +17,9 @@ hero:
     - theme: alt
       text: 疑难解答
       link: /docs/qa
+    - theme: alt
+      text: 测试PR触发
+      link: https://sccube.link/
 
 features:
   - title: 隐私保护，安全无忧
