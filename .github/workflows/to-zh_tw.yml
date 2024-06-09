@@ -27,7 +27,7 @@ jobs:
         pip install opencc
 
     - name: Run translation script
-      run: python .github/scripts/translate_docs.py
+      run: python .github/scripts/docs_translate2tw.py
 
     - name: Comment on PR with translation suggestions
       uses: marocchino/sticky-pull-request-comment@v2
