@@ -46,7 +46,7 @@ for file in files:
 
 <summary>展開翻譯建議</summary>
 
-### File: {file["filename"]}:
+### File: `{file["filename"]}`:
 
 ```markdown
 {translated_content}
