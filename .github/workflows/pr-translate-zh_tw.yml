@@ -3,10 +3,6 @@ name: Translate Docs
 on:
   pull_request:
     types: [opened, synchronize]
-    paths:
-      - 'announcements/**'
-      - 'docs/**'
-      - 'blog/**'
 
 jobs:
   translate:
